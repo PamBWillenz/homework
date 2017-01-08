@@ -50,7 +50,156 @@
         </div>
         <pre class="debug"></pre>
         <script>
-            // your code goes here ...
+
+            // validate form
+
+            function validate(form) {
+              invalid = validateAge(form.age.value)
+              invalid += validateRel(form.rel.value)
+              if (invalid == "") return true
+              else {
+                alert(fail);
+                return false
+              }
+            }
+
+            function validateAge(field) {
+              if (isAge(field)) return "No age was entered. \n"
+              else if (field < 1 || field > 100)
+                return "Age must be greater than 0. \n"
+              return ""
+            }
+
+            function validateRel(field) {
+              if (field == "") return "Please select a relationship \n"
+              return ""
+            }
+            document.querySelector("form").onsubmit = function() {
+              return validate(this)
+            }
+            document.querySelector(".add").onclick = function(event) {
+              event.preventDefault();
+              createinput()
+            };
+            count = 0;
+
+            // add a person to household list
+
+            function addPerson() {
+              field_area = document.querySelector('.household')
+              var li = document.createElement("li");
+              var person = document.createElement("person");
+              var person2 = document.createElement("person");
+              var person3 = document.createElement("person")
+              var age = document.getElementsByName("age")[0].value;
+              var relationship = document.getElementsByName("rel")[0].value;
+              var smoker = document.getElementsByName("smoker")[0].value;
+
+              var person.innerHTML = age;
+              var person2.innerHTML = relationship;
+              var person3.innerHTML = smoker;
+
+              li.appendChild(person)
+              li.appendChild(person2)
+              li.appendChild(person3)
+              field_area.appendChild(li);
+              
+              var removeLink = document.createElement('a');
+              removalLink.onclick = function() {
+                this.parentNode.parentNode.removeChild(this.parentNode)
+              }
+              var removalText = document.createTextNode('Remove Field');
+              removalLink.appendChild(removalText);
+              li.appendChild(removalLink);
+              count++
+            }
+
+
+
+            // FIRST ATTEMPT  
+
+
+            // validate data entry form
+
+            // var form  = document.getElementsByTagName('form')[0];
+            // var relationship = document.getElementById('rel');
+            // var age = document.getElementById('age')
+            // var smoker = document.querySelector('.smoker');
+            // var add = document.getElementById('add');
+
+            // age.addEventListener("keyup", function (event) {
+            //   if (age.validity.valid) {
+            //     error.innerHTML = ""; // Reset the content of the message
+            //     error.className = "error"; // Reset the visual state of the message
+            //   }
+            // }, false);
+
+            // addEvent(window, "load", function () {
+            //   var test = age.value.length > 0 || age.test(age.value);
+             
+            //   age.className = test ? "valid" : "invalid";
+            // });
+
+
+            // rel.addEventListener("rel.option value", function (event) {
+            //   if (relationship.validity.valid) {
+            //     error.innerHTML = ""; // Reset the content of the message
+            //     error.className = "error"; // Reset the visual state of the message
+            //   }
+            // }, false);
+            // form.addEventListener("submit", function (event) {
+            //   if (!relationship.validity.valid) {
+            //     error.innerHTML = "Pick the relationship";
+            //     error.className = "error active";
+            //     event.preventDefault();
+            //   }
+            // }, false);
+
+            // form.addEventListener("submit", function (event) {
+            //   if (!age.validity.valid) {
+            //     error.innerHTML = "I expect to see an age";
+            //     error.className = "error active";
+            //     event.preventDefault();
+            //   }
+            // }, false);
+
+            // form.addEventListener("checkbox", function (event) {
+            //   if (!smoker.validity.valid) {
+            //     error.innerHTML = "Smoker?";
+            //     error.className = "error active";
+            //     event.preventDefault();
+            //   }
+            // }, false);
+
+            // function(errors, event) {
+            //     if (errors.length > 0) {
+            // var errorString = '';
+
+            //     for (var i = 0, errorLength = errors.length; i < errorLength; i++) {
+            //     errorString += errors[i].message + '<br />';
+            //     }
+
+            //     el.innerHTML = errorString;
+            //     }
+            // }
+
+            // // add household people to list
+
+            // function addHouseholdPerson(){
+            //     var householdName = document.getElementById('householdName').value;
+            //     var age = document.getElementById('age').value;
+            //     var relationship = document.getElementById('rel');
+            //     var smoker? = document.querySelector('.smoker');
+            //     entry.appendChild(document.createTextNode(householdName + ' ' + age + relationship +.smoker?));
+            //     list.appendChild(entry);
+
+            //     return false;
+            // }
+
+            // // remove the last person on the list
+
+            // var householdName = document.getElementById("householdName").value;
+            //     householdName.remove(last);
         </script>
     </body>
 </html>
