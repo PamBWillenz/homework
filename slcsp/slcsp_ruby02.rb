@@ -7,13 +7,12 @@ require 'csv'
 def import_csv  # set up plans.csv and grab all silver attributes
   CSV.foreach('plans.csv', headers: true, headers_converters: :symbol) do |row|
     
-      state, rate, rate_region, zip = row
+      state, rate, rate_region, metal_level, zip = row
       
-      plan = Plan.create(state: state, rate: rate, rate_region: rate_region, zip: zip_code)
-
+      plan = Plan.create(state: state, rate: rate, metal_level: metal_level, rate_region: rate_region, zip_code: zip_code)
 
       plan = Plan.where(metal_level: row[:metal_level]).first_or_initialize
-      plan.assign_attributes row.to_hash.slice(:Silver)
+      plan.assign_attributes row.to_hash.slice('silver')
       plan
 
   p plan

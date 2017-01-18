@@ -1,11 +1,15 @@
 require 'csv'
 
-plans = CSV.read('plans.csv', headers:true) #=> <CSV::Table mode:col_or_row row_count:5>
-#p plans.to_a
-
-plans.each do |plan_row|
-  p plan_row 
+CSV.open('plans.csv', 'wb') do |csv|
+  csv << ['rate', 'rate_area', 'metal_level']
 end
+
+# plans = CSV.read('plans.csv', headers:true) #=> <CSV::Table mode:col_or_row row_count:5>
+# #p plans.to_a
+
+# plans.each do |plan_row|
+#   p plan_row 
+# end
 
 # CSV::Converters[:blank_to_nil] = lambda do |field|
 #   field && field.empty? ? nil : field
@@ -14,7 +18,7 @@ end
 # csv = CSV.new(body, :headers => true, :header_converters => :symbol)
 # csv.to_a.map {|row| row.to_hash }
 
-#####################################################
+# ####################################################
 
 # data = "plan_id,state, metal_level, rate, rate_area" 
 
@@ -43,7 +47,7 @@ end
 
 # puts csv_out
 
-###############################################
+# ##############################################
 
 # CSV.open('plans.csv', 'r+') do |row|
 #   row << ['metal_level', 'rate', 'rate_area']
